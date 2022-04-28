@@ -1,0 +1,7 @@
+View -
+CREATE VIEW v1 as select dc.Cust_id, dc.product_category, sum(fs.Sales) as sum_sales from csv$star as fs inner join ( select pq.product_category, ls.cust_id from sql$marketdb$dim_prod as pq inner join sql$marketdb$fact_sales as ls on pq.prod_id == ls.prod_id ) as dc on dc.Cust_id == fs.Cust_id group by dc.Cust_id, dc.product_category order by sum_sales desc
+Query -
+select * from v1 limit 10
+Update data source -
+in star.csv line 8, order 31 cust 26, change 14.76 sales to 1000014.76 sales
+Query again
